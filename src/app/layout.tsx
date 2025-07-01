@@ -12,6 +12,9 @@ const openSans = Open_Sans({
 export const metadata: Metadata = {
     title: 'Investing Portfolio',
     description: 'Manage portfolios, trades, and quotes in one investment tracking app',
+    icons: {
+        icon: '/assets/favicon.png', // или .png
+    },
 }
 
 export default function RootLayout({

@@ -4,7 +4,7 @@ import { SidebarApp } from '@/components/layout/SidebarApp/SidebarApp'
 
 export function LayoutApp({ children }: PropsWithChildren<unknown>) {
     return (
-        <main>
+        <main className="flex">
             <SidebarApp />
             <CentralModuleApp>{children}</CentralModuleApp>
         </main>
