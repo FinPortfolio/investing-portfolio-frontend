@@ -6,7 +6,7 @@ import { PUBLIC_PAGE } from '@/config/public-page.config'
 
 export function HeaderApp() {
     return (
-        <header className="p-layout flex justify-end align-center gap-4">
+        <header className="p-layout flex justify-end align-center gap-5">
             <Link href={PUBLIC_PAGE.PROFILE}>
                 <CircleUser />
             </Link>
