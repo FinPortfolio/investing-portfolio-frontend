@@ -1,10 +1,10 @@
 class PublicPage {
     HOME = '/'
-    PROFILE = '/app/profile'
-    PORTFOLIO = '/app/portfolio'
-    TRANSACTIONS = '/app/transactions'
-    SETUP = '/app/setup'
-    QUOTES = '/app/quotes'
+    PROFILE = '/portfolio/profile'
+    PORTFOLIO = '/portfolio'
+    TRANSACTIONS = '/portfolio/transactions'
+    SETUP = '/portfolio/setup'
+    QUOTES = '/portfolio/quotes'
 }
 
 export const PUBLIC_PAGE = new PublicPage()
