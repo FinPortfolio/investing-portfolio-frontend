@@ -1,12 +1,12 @@
 import type { PropsWithChildren } from 'react'
-import { CentralModuleApp } from '@/components/layout/LayoutPortfolio/CentralModule/CentralModule'
-import { SidebarApp } from '@/components/layout/LayoutPortfolio/Sidebar/Sidebar'
+import { CentralModule } from '@/components/layout/LayoutPortfolio/CentralModule/CentralModule'
+import { Sidebar } from '@/components/layout/LayoutPortfolio/Sidebar/Sidebar'
 
-export function LayoutApp({ children }: PropsWithChildren<unknown>) {
+export function LayoutPortfolio({ children }: PropsWithChildren<unknown>) {
     return (
         <main className="flex">
-            <SidebarApp />
-            <CentralModuleApp>{children}</CentralModuleApp>
+            <Sidebar />
+            <CentralModule>{children}</CentralModule>
         </main>
     )
 }
