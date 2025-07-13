@@ -8,9 +8,10 @@ import { QuickActionSubmenu } from '../QuickActionSubmenu/QuickActionSubmenu'
 
 interface SidebarMenuProps {
     collapsedMenu: boolean
+    ignoreClickRefs?: Array<React.RefObject<HTMLElement | null>>
 }
 
-export function SidebarMenu({ collapsedMenu }: SidebarMenuProps) {
+export function SidebarMenu({ collapsedMenu, ignoreClickRefs }: SidebarMenuProps) {
     const [submenuOpen, setSubmenuOpen] = useState(false)
     const submenuRef = useRef<HTMLDivElement | null>(null)
     const buttonRef = useRef<HTMLButtonElement | null>(null)
@@ -20,11 +21,15 @@ export function SidebarMenu({ collapsedMenu }: SidebarMenuProps) {
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             const target = event.target as Node
+
+            const clickedInsideIgnoredRef = ignoreClickRefs?.some((ref) => ref.current && ref.current.contains(target))
+
             if (
                 submenuRef.current &&
                 !submenuRef.current.contains(target) &&
                 buttonRef.current &&
-                !buttonRef.current.contains(target)
+                !buttonRef.current.contains(target) &&
+                !clickedInsideIgnoredRef
             ) {
                 setSubmenuOpen(false)
             }
@@ -37,7 +42,7 @@ export function SidebarMenu({ collapsedMenu }: SidebarMenuProps) {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }
-    }, [submenuOpen])
+    }, [submenuOpen, ignoreClickRefs])
 
     return (
         <nav className="relative px-layout flex item-start text-base w-full transition-all duration-300">

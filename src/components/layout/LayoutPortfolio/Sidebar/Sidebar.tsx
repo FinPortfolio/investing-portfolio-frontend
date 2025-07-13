@@ -5,10 +5,11 @@ import { SidebarMenu } from '@/components/layout/LayoutPortfolio/Sidebar/Sidebar
 import Link from 'next/link'
 import { PUBLIC_PAGE } from '@/config/public-page.config'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export function Sidebar() {
     const [collapsedMenu, setCollapsedMenu] = useState<boolean>(false)
+    const sidebarToggleRef = useRef<HTMLButtonElement>(null)
 
     const toggleSidebar = (): void => {
         setCollapsedMenu((prev) => !prev)
@@ -46,12 +47,13 @@ export function Sidebar() {
             </Link>
             <div className="flex flex-col justify-center flex-grow">
                 <button
+                    ref={sidebarToggleRef}
                     className="px-layout py-2 hover:text-primaryLight transition-all duration-300"
                     onClick={toggleSidebar}
                 >
                     {collapsedMenu ? <ChevronRight /> : <ChevronLeft />}
                 </button>
-                <SidebarMenu collapsedMenu={collapsedMenu} />
+                <SidebarMenu collapsedMenu={collapsedMenu} ignoreClickRefs={[sidebarToggleRef]} />
             </div>
         </aside>
     )
