@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { SidebarAppMenu } from '@/components/layout/SidebarApp/SidebarAppMenu/SidebarAppMenu'
+import { SidebarAppMenu } from '@/components/layout/LayoutPortfolio/Sidebar/SidebarMenu/SidebarMenu'
 import Link from 'next/link'
 import { PUBLIC_PAGE } from '@/config/public-page.config'
 import { ChevronLeft, ChevronRight } from 'lucide-react'

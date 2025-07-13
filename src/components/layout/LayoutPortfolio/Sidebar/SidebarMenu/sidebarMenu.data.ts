@@ -1,5 +1,5 @@
 import { CirclePlus, Briefcase, ArrowLeftRight, ChartNoAxesCombined, Columns3Cog } from 'lucide-react'
-import type { ISidebarAppItem } from '@/components/layout/SidebarApp/SidebarAppMenu/sidebarAppMenu.types'
+import type { ISidebarAppItem } from '@/components/layout/LayoutPortfolio/Sidebar/SidebarMenu/sidebarMenu.types'
 import { PUBLIC_PAGE } from '@/config/public-page.config'
 
 export const SIDEBAR_DATA: ISidebarAppItem[] = [

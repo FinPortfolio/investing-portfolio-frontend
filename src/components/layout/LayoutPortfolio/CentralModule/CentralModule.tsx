@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { HeaderApp } from '@/components/layout/HeaderApp/HeaderApp'
+import { HeaderApp } from '@/components/layout/LayoutPortfolio/Header/Header'
 
 export function CentralModuleApp({ children }: PropsWithChildren<unknown>) {
     return (

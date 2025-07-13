@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { LayoutApp } from '@/components/layout/LayoutApp/LayoutApp'
+import { LayoutApp } from '@/components/layout/LayoutPortfolio/LayoutPortfolio'
 
 export const metadata: Metadata = {
     title: 'Investing Portfolio',

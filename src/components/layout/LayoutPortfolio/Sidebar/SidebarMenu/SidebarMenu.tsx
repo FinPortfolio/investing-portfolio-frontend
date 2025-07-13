@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { SIDEBAR_DATA } from './sidebarAppMenu.data'
-import type { ISidebarAppItem } from './sidebarAppMenu.types'
+import { SIDEBAR_DATA } from './sidebarMenu.data'
+import type { ISidebarAppItem } from './sidebarMenu.types'
 
 interface SidebarAppMenuProps {
     collapsed: boolean
