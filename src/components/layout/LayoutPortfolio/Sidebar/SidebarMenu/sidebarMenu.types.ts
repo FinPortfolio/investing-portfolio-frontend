@@ -1,9 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
 
-export interface ISidebarAppItem {
+export interface ISidebarItem {
     icon: LucideIcon
     label: string
     link?: string
-    onClick?: () => void
     isAction?: boolean
 }

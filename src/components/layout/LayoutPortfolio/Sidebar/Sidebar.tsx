@@ -1,27 +1,28 @@
 'use client'
 
 import Image from 'next/image'
-import { SidebarAppMenu } from '@/components/layout/SidebarApp/SidebarAppMenu/SidebarAppMenu'
+import { SidebarMenu } from '@/components/layout/LayoutPortfolio/Sidebar/SidebarMenu/SidebarMenu'
 import Link from 'next/link'
 import { PUBLIC_PAGE } from '@/config/public-page.config'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
-export function SidebarApp() {
-    const [collapsed, setCollapsed] = useState<boolean>(false)
+export function Sidebar() {
+    const [collapsedMenu, setCollapsedMenu] = useState<boolean>(false)
+    const sidebarToggleRef = useRef<HTMLButtonElement>(null)
 
     const toggleSidebar = (): void => {
-        setCollapsed((prev) => !prev)
+        setCollapsedMenu((prev) => !prev)
     }
 
     return (
         <aside
-            className={`h-screen bg-sidebar flex flex-col align-start shadow-custom-green p-layout  transition-[width]  duration-300 ease-in-out ${
-                collapsed ? 'w-[100px]' : 'w-[240px]'
+            className={`h-screen bg-sidebar flex flex-col align-start shadow-custom-green  transition-[width]  duration-300 ease-in-out ${
+                collapsedMenu ? 'w-[100px]' : 'w-[240px]'
             }`}
         >
             <Link href={PUBLIC_PAGE.HOME}>
-                <div className="flex items-center gap-5">
+                <div className="p-layout flex items-center gap-5">
                     <Image
                         src="/assets/logo_inv_portfolio.svg"
                         alt="Invest Portfolio logo full"
@@ -29,8 +30,8 @@ export function SidebarApp() {
                         height={40}
                     />
                     <div
-                        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-                            collapsed
+                        className={`sidebar-item-transition-custom ${
+                            collapsedMenu
                                 ? 'opacity-0 translate-x-[-10px] w-0'
                                 : 'opacity-100 translate-x-0 w-auto delay-200'
                         }`}
@@ -45,10 +46,14 @@ export function SidebarApp() {
                 </div>
             </Link>
             <div className="flex flex-col justify-center flex-grow">
-                <button className="py-2 hover:text-primaryLight transition-all duration-300" onClick={toggleSidebar}>
-                    {collapsed ? <ChevronRight /> : <ChevronLeft />}
+                <button
+                    ref={sidebarToggleRef}
+                    className="px-layout py-2 hover:text-primaryLight transition-all duration-300"
+                    onClick={toggleSidebar}
+                >
+                    {collapsedMenu ? <ChevronRight /> : <ChevronLeft />}
                 </button>
-                <SidebarAppMenu collapsed={collapsed} />
+                <SidebarMenu collapsedMenu={collapsedMenu} ignoreClickRefs={[sidebarToggleRef]} />
             </div>
         </aside>
     )

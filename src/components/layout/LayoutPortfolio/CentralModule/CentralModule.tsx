@@ -1,10 +1,10 @@
 import type { PropsWithChildren } from 'react'
-import { HeaderApp } from '@/components/layout/HeaderApp/HeaderApp'
+import { Header } from '@/components/layout/LayoutPortfolio/Header/Header'
 
-export function CentralModuleApp({ children }: PropsWithChildren<unknown>) {
+export function CentralModule({ children }: PropsWithChildren<unknown>) {
     return (
         <div className="flex-1 basis-0 w-[100%]">
-            <HeaderApp />
+            <Header />
             <section>{children}</section>
         </div>
     )
