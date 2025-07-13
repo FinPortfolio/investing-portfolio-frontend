@@ -13,15 +13,12 @@ export function SidebarAppMenu({ collapsed }: SidebarAppMenuProps) {
         <nav className="flex item-start text-base opacity-80 w-full transition-all duration-300">
             <ul>
                 {SIDEBAR_DATA.map((item: ISidebarAppItem, index) => (
-                    <li key={index} className="hover:text-primaryLight">
+                    <li key={index} className="hover:text-primaryLight transition-color delay-0">
                         {item.link ? (
-                            <Link
-                                href={item.link}
-                                className={`relative flex py-2 transition-all duration-300 ${collapsed ? '' : 'gap-5'}`}
-                            >
+                            <Link href={item.link} className="sidebar-item-custom">
                                 <item.icon />
                                 <span
-                                    className={`whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out
+                                    className={`sidebar-item-transition-custom
     ${collapsed ? 'opacity-0 translate-x-[-10px] delay-0' : 'opacity-100 translate-x-0 delay-200'}
 
   `}
@@ -30,13 +27,10 @@ export function SidebarAppMenu({ collapsed }: SidebarAppMenuProps) {
                                 </span>
                             </Link>
                         ) : item.onClick ? (
-                            <button
-                                onClick={item.onClick}
-                                className={`flex py-2 transition-all duration-300 ${collapsed ? '' : 'gap-5'}`}
-                            >
+                            <button onClick={item.onClick} className="sidebar-item-custom">
                                 <item.icon />
                                 <span
-                                    className={`whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out
+                                    className={`sidebar-item-transition-custom
     ${collapsed ? 'opacity-0 translate-x-[-10px] delay-0' : 'opacity-100 translate-x-0 delay-200'}
   `}
                                 >

@@ -29,7 +29,7 @@ export function SidebarApp() {
                         height={40}
                     />
                     <div
-                        className={`transition-all duration-300 ease-in-out overflow-hidden ${
+                        className={`sidebar-item-transition-custom ${
                             collapsed
                                 ? 'opacity-0 translate-x-[-10px] w-0'
                                 : 'opacity-100 translate-x-0 w-auto delay-200'
