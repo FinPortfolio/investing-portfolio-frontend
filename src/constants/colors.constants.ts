@@ -4,5 +4,6 @@ export const COLORS = {
     secondary: '#DD6C30', //orange
     bg: '#0E0E12', //dark-grey
     sidebar: '#050807', //dark-dark-grey
+    modalBg: '#050807', //dark-dark-grey
     error: '#AA193D', //dark-red
 }
