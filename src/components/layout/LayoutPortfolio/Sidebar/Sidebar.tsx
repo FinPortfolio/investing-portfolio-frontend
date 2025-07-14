@@ -9,7 +9,7 @@ import { useRef, useState } from 'react'
 
 export function Sidebar() {
     const [collapsedMenu, setCollapsedMenu] = useState<boolean>(false)
-    const sidebarToggleRef = useRef<HTMLButtonElement>(null)
+    const sidebarToggleRef = useRef<HTMLButtonElement | null>(null)
 
     const toggleSidebar = (): void => {
         setCollapsedMenu((prev) => !prev)
@@ -53,7 +53,7 @@ export function Sidebar() {
                 >
                     {collapsedMenu ? <ChevronRight /> : <ChevronLeft />}
                 </button>
-                <SidebarMenu collapsedMenu={collapsedMenu} ignoreClickRefs={[sidebarToggleRef]} />
+                <SidebarMenu collapsedMenu={collapsedMenu} ignoreClickRef={sidebarToggleRef} />
             </div>
         </aside>
     )
