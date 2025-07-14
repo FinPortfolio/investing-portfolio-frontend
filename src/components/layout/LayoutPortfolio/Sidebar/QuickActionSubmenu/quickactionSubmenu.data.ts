@@ -5,20 +5,8 @@ import { ModalETFTransaction } from '@/components/ModalTransactions/ModalETFTran
 import { ModalCryptoTransaction } from '@/components/ModalTransactions/ModalCryptoTransaction/ModalCryptoTransaction'
 
 export const QUICK_ACTION_DATA: IQuickActionItem[] = [
-    {
-        label: 'Add Stock Transaction',
-        modal: ModalStockTransaction,
-    },
-    {
-        label: 'Add ETF Transaction',
-        modal: ModalETFTransaction,
-    },
-    {
-        label: 'Add Bond Transaction',
-        modal: ModalBondTransaction,
-    },
-    {
-        label: 'Add Crypto Transaction',
-        modal: ModalCryptoTransaction,
-    },
+    { id: 'stock', label: 'Add Stock Transaction', modal: ModalStockTransaction },
+    { id: 'etf', label: 'Add ETF Transaction', modal: ModalETFTransaction },
+    { id: 'bond', label: 'Add Bond Transaction', modal: ModalBondTransaction },
+    { id: 'crypto', label: 'Add Crypto Transaction', modal: ModalCryptoTransaction },
 ]

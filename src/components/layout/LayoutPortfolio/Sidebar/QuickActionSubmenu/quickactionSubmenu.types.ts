@@ -1,8 +1,7 @@
-import type { LucideIcon } from 'lucide-react'
-import type { ComponentType } from 'react'
+import type { ModalProps } from '../../../../ui/Modal/modal.types'
 
 export interface IQuickActionItem {
-    icon?: LucideIcon
+    id: string
     label: string
-    modal?: ComponentType<unknown>
+    modal: React.ComponentType<ModalProps>
 }
