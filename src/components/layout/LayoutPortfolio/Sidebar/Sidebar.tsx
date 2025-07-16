@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { SidebarMenu } from '@/components/layout/LayoutPortfolio/Sidebar/SidebarMenu/SidebarMenu'
 import Link from 'next/link'
-import { PUBLIC_PAGE } from '@/config/public-page.config'
+import { PUBLIC_PAGE } from '@/config/paths.config'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useRef, useState } from 'react'
 
