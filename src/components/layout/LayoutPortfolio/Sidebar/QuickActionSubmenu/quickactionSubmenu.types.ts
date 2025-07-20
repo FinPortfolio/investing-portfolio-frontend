@@ -1,4 +1,4 @@
-import type { ModalProps } from '../../../../ui/Modal/modal.types'
+import type { ModalProps } from '../../../../ui/modal/modal.types'
 
 export interface IQuickActionItem {
     id: string
