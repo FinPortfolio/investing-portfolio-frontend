@@ -14,6 +14,8 @@ module.exports = {
             },
             backgroundImage: {
                 'custom-orange-gradient': 'linear-gradient(90deg, #DD6C30 0%, #E4864F 50%, #FBB773 100%)',
+                'custom-green-gradient':
+                    'linear-gradient(90deg,rgba(0, 145, 85, 1) 0%, rgba(103, 219, 171, 1) 50%, rgba(0, 145, 85, 1) 100%)',
             },
         },
     },

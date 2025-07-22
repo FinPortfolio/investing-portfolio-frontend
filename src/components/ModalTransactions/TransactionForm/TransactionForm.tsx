@@ -5,6 +5,7 @@ import { Field } from '@/components/ui/form/field/Field'
 import { SelectField } from '@/components/ui/form/selectField/SelectField'
 import { TextareaField } from '@/components/ui/form/textareaField/TextareaField'
 import { formatDateToInput } from '@/utils/helper'
+import { Button } from '@/components/ui/button/Button'
 import type { SubmitHandler } from 'react-hook-form'
 import type { AssetType } from '@/types/commonTypes'
 import { transactionTypeOptions, transactionCurrencyOptions } from '../transactionsOptions.data'
@@ -61,7 +62,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 registration={register('symbolID', { required: 'Asset ID is required' })}
                 error={errors.symbolID?.message}
             />
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 my-3">
                 <SelectField
                     label="Transaction"
                     registration={register('transactionType')}
@@ -86,7 +87,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 />
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-3 gap-4 mb-3">
                 <Field
                     label="Price"
                     type="number"
@@ -140,19 +141,10 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             />
 
             <div className="flex justify-end gap-3 mt-4">
-                <button
-                    type="button"
-                    onClick={onClose}
-                    className="px-4 py-2 text-white/80 border border-white/20 rounded hover:border-white/40 transition-colors"
-                >
+                <Button type="button" onClick={onClose} variant="primaryTransparent">
                     Cancel
-                </button>
-                <button
-                    type="submit"
-                    className="px-4 py-2 bg-primaryLight text-bg rounded hover:bg-primaryLight/80 transition-colors"
-                >
-                    Save Transaction
-                </button>
+                </Button>
+                <Button type="submit">Save Transaction</Button>
             </div>
         </form>
     )
