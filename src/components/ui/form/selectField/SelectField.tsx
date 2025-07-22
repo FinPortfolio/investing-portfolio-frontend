@@ -16,12 +16,10 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
 export function SelectField({ label, error, registration, options, ...props }: SelectFieldProps) {
     return (
         <div>
-            <label className="text-sm">
-                <span className="block mb-1 text-sm">{label}</span>
+            <label>
+                <span className="input-label">{label}</span>
                 <select
-                    className={`w-full bg-transparent px-3 py-2 text-sm border rounded transition-colors focus:outline-none focus:ring-0 focus:border-primary ${
-                        error ? 'border-error' : 'border-primaryLight'
-                    }`}
+                    className={`input-basic focus:border-primaryDark ${error ? 'border-error' : 'border-primaryLight'}`}
                     {...registration}
                     {...props}
                 >

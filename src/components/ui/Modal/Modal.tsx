@@ -35,7 +35,7 @@ export function Modal({ isOpen, onClose, modalTitle, children }: ModalProps) {
             <div className="relative bg-modalBg border-2 border-primaryLight p-8 rounded-xl w-full max-w-2xl shadow-custom-green">
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 text-white/80 hover:text-primaryLight"
+                    className="absolute top-4 right-4 text-white/80 hover:text-primary"
                     aria-label="Close modal"
                 >
                     <X />

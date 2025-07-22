@@ -1,6 +1,6 @@
 export const transactionTypeOptions = [
-    { value: 'buy', label: 'buy' },
-    { value: 'sell', label: 'sell' },
+    { value: 'buy', label: 'Buy' },
+    { value: 'sell', label: 'Sell' },
 ]
 
 export const transactionCurrencyOptions = [

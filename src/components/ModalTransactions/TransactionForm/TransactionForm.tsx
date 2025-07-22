@@ -8,24 +8,13 @@ import { formatDateToInput } from '@/utils/helper'
 import { Button } from '@/components/ui/button/Button'
 import type { SubmitHandler } from 'react-hook-form'
 import type { AssetType } from '@/types/commonTypes'
-import { transactionTypeOptions, transactionCurrencyOptions } from '../transactionsOptions.data'
+import type { ITransactionForm } from './transactionForm.types'
+import { transactionTypeOptions, transactionCurrencyOptions } from './transactionsOptions.data'
+import { validations } from './validations'
 
 interface TransactionsFormProps {
     type: AssetType
     onClose: () => void
-}
-
-interface ITransactionForm {
-    symbolID: string
-    transactionType: string
-    transactionCurrency: string
-    transactionDate: string
-    initialPrice: number
-    transactionCommision: number
-    transactionQuantity: number
-    notes: string
-    bondNominal?: number
-    bondAccruedInterest?: number
 }
 
 export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
@@ -40,7 +29,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
         mode: 'onChange',
         defaultValues: {
             transactionType: 'buy',
-            transactionCurrency: 'US Dollar',
+            transactionCurrency: 'USD',
             transactionDate: today,
             initialPrice: 0,
             transactionCommision: 0,
@@ -59,7 +48,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             <Field
                 label="Asset ID"
                 type="text"
-                registration={register('symbolID', { required: 'Asset ID is required' })}
+                registration={register('symbolID', validations.symbolID)}
                 error={errors.symbolID?.message}
             />
             <div className="grid grid-cols-3 gap-4 my-3">
@@ -72,17 +61,13 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 <Field
                     label="Quantity"
                     type="number"
-                    registration={register('transactionQuantity', {
-                        required: 'Quantity is required',
-                        valueAsNumber: true,
-                        min: { value: 1, message: 'Quantity must be at least 1' },
-                    })}
+                    registration={register('transactionQuantity', validations.transactionQuantity)}
                     error={errors.transactionQuantity?.message}
                 />
                 <Field
                     label="Date"
                     type="date"
-                    registration={register('transactionDate', { required: 'Transaction date is required' })}
+                    registration={register('transactionDate', validations.transactionDate)}
                     error={errors.transactionDate?.message}
                 />
             </div>
@@ -91,21 +76,15 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 <Field
                     label="Price"
                     type="number"
-                    registration={register('initialPrice', {
-                        required: 'Initial price is required',
-                        valueAsNumber: true,
-                        min: { value: 0, message: 'Price must be non-negative' },
-                    })}
+                    step="any"
+                    registration={register('initialPrice', validations.initialPrice)}
                     error={errors.initialPrice?.message}
                 />
                 <Field
                     label="Commission"
                     type="number"
-                    registration={register('transactionCommision', {
-                        required: 'Commission is required',
-                        valueAsNumber: true,
-                        min: { value: 0, message: 'Commission must be non-negative' },
-                    })}
+                    step="any"
+                    registration={register('transactionCommision', validations.transactionCommision)}
                     error={errors.transactionCommision?.message}
                 />
                 <SelectField
@@ -117,17 +96,19 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             </div>
 
             {type === 'bond' && (
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-3 gap-4 mb-3">
                     <Field
                         label="Bond Nominal"
                         type="number"
-                        registration={register('bondNominal', { valueAsNumber: true })}
+                        step="any"
+                        registration={register('bondNominal', validations.bondNominal)}
                         error={errors.bondNominal?.message}
                     />
                     <Field
                         label="Accrued Interest"
                         type="number"
-                        registration={register('bondAccruedInterest', { valueAsNumber: true })}
+                        step="any"
+                        registration={register('bondAccruedInterest', validations.bondAccruedInterest)}
                         error={errors.bondAccruedInterest?.message}
                     />
                 </div>
@@ -135,7 +116,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
 
             <TextareaField
                 label="Notes"
-                registration={register('notes')}
+                registration={register('notes', validations.notes)}
                 error={errors.notes?.message}
                 placeholder="You can add a comment for a transaction (optional)"
             />
