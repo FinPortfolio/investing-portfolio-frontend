@@ -1,11 +1,16 @@
 'use client'
 
-import { QUICK_ACTION_DATA } from './quickactionSubmenu.data'
-import type { IQuickActionItem } from './quickactionSubmenu.types'
+'use client'
+
 import { useState } from 'react'
+import { QUICK_ACTION_DATA } from './quickactionSubmenu.data'
+import { ModalTransactions } from '../../../../ModalTransactions/ModalTransaction'
+import type { IQuickActionItem } from './quickactionSubmenu.types'
 
 export function QuickActionSubmenu() {
     const [openModalId, setOpenModalId] = useState<string | null>(null)
+
+    const activeItem = QUICK_ACTION_DATA.find((item) => item.id === openModalId)
 
     return (
         <>
@@ -16,15 +21,14 @@ export function QuickActionSubmenu() {
                     </li>
                 ))}
             </ul>
-            {QUICK_ACTION_DATA.map(({ id, label, modal: ModalComponent }) =>
-                ModalComponent ? (
-                    <ModalComponent
-                        key={id}
-                        modalTitle={label}
-                        isOpen={openModalId === id}
-                        onClose={() => setOpenModalId(null)}
-                    />
-                ) : null,
+
+            {activeItem && (
+                <ModalTransactions
+                    isOpen={!!openModalId}
+                    onClose={() => setOpenModalId(null)}
+                    modalTitle={activeItem.label}
+                    type={activeItem.type}
+                />
             )}
         </>
     )
