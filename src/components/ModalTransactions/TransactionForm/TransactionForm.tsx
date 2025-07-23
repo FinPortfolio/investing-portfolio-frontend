@@ -1,6 +1,6 @@
 'use client'
 
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { Field } from '@/components/ui/form/field/Field'
 import { SelectField } from '@/components/ui/form/selectField/SelectField'
 import { TextareaField } from '@/components/ui/form/textareaField/TextareaField'
@@ -12,6 +12,7 @@ import type { AssetType } from '@/types/commonTypes'
 import type { ITransactionForm } from './transactionForm.types'
 import { transactionTypeOptions, transactionCurrencyOptions } from './transactionsOptions.data'
 import { getValidationRules } from './validations'
+import { TransactionTotalSum } from './TransactionTotalSum/TransactionTotalSum'
 
 interface TransactionsFormProps {
     type: AssetType
@@ -37,6 +38,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
         handleSubmit,
         formState: { errors },
         reset,
+        control,
     } = useForm<ITransactionForm>({
         mode: 'onChange',
         defaultValues: {
@@ -51,6 +53,13 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             isAccruedInterestPerBond: true,
         },
     })
+
+    const currency = useWatch({ control, name: 'transactionCurrency' })
+    const price = useWatch({ control, name: 'initialPrice' })
+    const quantity = useWatch({ control, name: 'transactionQuantity' })
+    const commission = useWatch({ control, name: 'transactionCommision' })
+    const accruedInterest = useWatch({ control, name: 'bondAccruedInterest' })
+    const accruedPerBond = useWatch({ control, name: 'isAccruedInterestPerBond' })
 
     const onSubmit: SubmitHandler<ITransactionForm> = (data) => {
         const submissionData = {
@@ -142,11 +151,22 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 placeholder="You can add a comment for a transaction (optional)"
             />
 
-            <div className="flex justify-end gap-3 mt-2">
-                <Button type="button" onClick={onClose} variant="primaryTransparent">
-                    Cancel
-                </Button>
-                <Button type="submit">Save Transaction</Button>
+            <div className="flex justify-between mt-2">
+                <TransactionTotalSum
+                    currency={currency}
+                    price={price}
+                    quantity={quantity}
+                    commission={commission}
+                    isBond={isBond}
+                    accruedInterest={accruedInterest}
+                    accruedPerBond={accruedPerBond}
+                />
+                <div className="flex gap-3">
+                    <Button type="button" onClick={onClose} variant="primaryTransparent">
+                        Cancel
+                    </Button>
+                    <Button type="submit">Save Transaction</Button>
+                </div>
             </div>
         </form>
     )

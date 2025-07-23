@@ -1,7 +1,9 @@
+import type { CurrencyType } from '@/types/commonTypes'
+
 export interface ITransactionForm {
     symbolID: string
     transactionType: string
-    transactionCurrency: string
+    transactionCurrency: CurrencyType
     transactionDate: string
     initialPrice: number
     transactionCommision: number
