@@ -10,7 +10,7 @@ import type { SubmitHandler } from 'react-hook-form'
 import type { AssetType } from '@/types/commonTypes'
 import type { ITransactionForm } from './transactionForm.types'
 import { transactionTypeOptions, transactionCurrencyOptions } from './transactionsOptions.data'
-import { validations } from './validations'
+import { getValidationRules } from './validations'
 
 interface TransactionsFormProps {
     type: AssetType
@@ -19,6 +19,17 @@ interface TransactionsFormProps {
 
 export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
     const today = formatDateToInput(new Date())
+
+    // TODO: заменить временные значения на реальные
+    const accountOpenDate = new Date('2020-01-01') //дата открытия счета
+    const assetQuantityLimit = 1000 // количество конкретного ассета
+    const isBond = type === 'bond'
+
+    const validations = getValidationRules({
+        accountOpenDate,
+        assetQuantityLimit,
+        isBond,
+    })
 
     const {
         register,
@@ -34,6 +45,8 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             initialPrice: 0,
             transactionCommision: 0,
             transactionQuantity: 1,
+            bondNominal: 0,
+            bondAccruedInterest: 0,
         },
     })
 
@@ -95,7 +108,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 />
             </div>
 
-            {type === 'bond' && (
+            {isBond && (
                 <div className="grid grid-cols-3 gap-4 mb-3">
                     <Field
                         label="Bond Nominal"
