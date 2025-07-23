@@ -9,4 +9,5 @@ export interface ITransactionForm {
     notes: string
     bondNominal?: number
     bondAccruedInterest?: number
+    isAccruedInterestPerBond?: boolean
 }

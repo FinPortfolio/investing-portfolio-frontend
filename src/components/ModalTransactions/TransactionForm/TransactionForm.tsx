@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Field } from '@/components/ui/form/field/Field'
 import { SelectField } from '@/components/ui/form/selectField/SelectField'
 import { TextareaField } from '@/components/ui/form/textareaField/TextareaField'
+import { Checkbox } from '@/components/ui/form/checkbox/Checkbox'
 import { formatDateToInput } from '@/utils/helper'
 import { Button } from '@/components/ui/button/Button'
 import type { SubmitHandler } from 'react-hook-form'
@@ -47,13 +48,19 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
             transactionQuantity: 1,
             bondNominal: 0,
             bondAccruedInterest: 0,
+            isAccruedInterestPerBond: true,
         },
     })
 
     const onSubmit: SubmitHandler<ITransactionForm> = (data) => {
+        const submissionData = {
+            ...data,
+            type,
+        }
+
+        console.log(submissionData)
         reset()
         onClose()
-        console.log(data)
     }
 
     return (
@@ -64,12 +71,11 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 registration={register('symbolID', validations.symbolID)}
                 error={errors.symbolID?.message}
             />
-            <div className="grid grid-cols-3 gap-4 my-3">
+            <div className="grid grid-cols-3 gap-4">
                 <SelectField
                     label="Transaction"
                     registration={register('transactionType')}
                     options={transactionTypeOptions}
-                    error={errors.transactionType?.message}
                 />
                 <Field
                     label="Quantity"
@@ -85,7 +91,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 />
             </div>
 
-            <div className="grid grid-cols-3 gap-4 mb-3">
+            <div className="grid grid-cols-3 gap-4">
                 <Field
                     label="Price"
                     type="number"
@@ -104,12 +110,11 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                     label="Currency"
                     registration={register('transactionCurrency')}
                     options={transactionCurrencyOptions}
-                    error={errors.transactionCurrency?.message}
                 />
             </div>
 
             {isBond && (
-                <div className="grid grid-cols-3 gap-4 mb-3">
+                <div className="grid grid-cols-3 gap-4 items-center">
                     <Field
                         label="Bond Nominal"
                         type="number"
@@ -118,12 +123,15 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                         error={errors.bondNominal?.message}
                     />
                     <Field
-                        label="Accrued Interest"
+                        label="Accrued Interest (AI)"
                         type="number"
                         step="any"
                         registration={register('bondAccruedInterest', validations.bondAccruedInterest)}
                         error={errors.bondAccruedInterest?.message}
                     />
+                    <div className="flex pb-[10px] w-full h-full justify-start items-end">
+                        <Checkbox label="AI per Bond" registration={register('isAccruedInterestPerBond')} />
+                    </div>
                 </div>
             )}
 
@@ -134,7 +142,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                 placeholder="You can add a comment for a transaction (optional)"
             />
 
-            <div className="flex justify-end gap-3 mt-4">
+            <div className="flex justify-end gap-3 mt-2">
                 <Button type="button" onClick={onClose} variant="primaryTransparent">
                     Cancel
                 </Button>

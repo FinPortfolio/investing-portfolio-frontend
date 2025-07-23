@@ -13,13 +13,13 @@ export function TextareaField({ label, error, registration, ...props }: Textarea
             <label>
                 <span className="input-label">{label}</span>
                 <textarea
-                    className={`input-basic focus:border-primaryDark ${error ? 'border-error' : 'border-primaryLight'}`}
+                    className={`input-basic ${error ? 'border-error' : 'border-primaryLight focus:border-primaryDark'}`}
                     rows={4}
                     {...registration}
                     {...props}
                 />
             </label>
-            {error && <p className="text-error text-xs mt-1">{error}</p>}
+            <p className="text-error text-xs mt-1 min-h-[1rem]">{error || '\u00A0'}</p>
         </div>
     )
 }

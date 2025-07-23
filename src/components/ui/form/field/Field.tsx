@@ -13,14 +13,14 @@ export function Field({ label, error, registration, ...props }: FieldProps) {
             <label>
                 <span className="input-label">{label}</span>
                 <input
-                    className={`input-basic focus:border-primaryDark ${
-                        error ? 'border-error focus:border-error' : 'border-light'
+                    className={`h-9 input-basic ${
+                        error ? 'border-error focus:border-error' : 'border-light focus:border-primaryDark'
                     }`}
                     {...registration}
                     {...props}
                 />
             </label>
-            {error && <p className="text-error text-xs mt-1">{error}</p>}
+            <p className="text-error text-xs mt-1 min-h-[1.125rem]">{error || '\u00A0'}</p>
         </div>
     )
 }

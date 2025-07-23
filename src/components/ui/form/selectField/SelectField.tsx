@@ -19,7 +19,9 @@ export function SelectField({ label, error, registration, options, ...props }: S
             <label>
                 <span className="input-label">{label}</span>
                 <select
-                    className={`input-basic focus:border-primaryDark ${error ? 'border-error' : 'border-primaryLight'}`}
+                    className={`h-9 input-basic ${
+                        error ? 'border-error focus:border-error' : 'border-primaryLight focus:border-primaryDark'
+                    }`}
                     {...registration}
                     {...props}
                 >
@@ -30,7 +32,7 @@ export function SelectField({ label, error, registration, options, ...props }: S
                     ))}
                 </select>
             </label>
-            {error && <p className="text-error text-xs mt-1">{error}</p>}
+            <p className="text-error text-xs ml-2 min-h-[1rem]">{error || '\u00A0'}</p>
         </div>
     )
 }
