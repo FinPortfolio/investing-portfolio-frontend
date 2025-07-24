@@ -19,6 +19,16 @@ const variantStyles = {
 export function Field({ label, error, registration, variant = 'primary', ...props }: FieldProps) {
     const styles = variantStyles[variant]
     const isDate = props.type === 'date'
+    const isNumber = props.type === 'number'
+
+    const handleNumberBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+        const value = e.target.value
+        if (value) {
+            const cleaned = String(parseInt(value, 10)) || '0'
+            e.target.value = cleaned
+            e.target.dispatchEvent(new Event('input', { bubbles: true }))
+        }
+    }
 
     return (
         <div>
@@ -29,6 +39,10 @@ export function Field({ label, error, registration, variant = 'primary', ...prop
                         className={`h-9 input-basic ${error ? 'border-error focus:border-error' : styles}`}
                         {...registration}
                         {...props}
+                        onBlur={(e) => {
+                            if (isNumber) handleNumberBlur(e)
+                            props.onBlur?.(e)
+                        }}
                     />
                     {isDate && (
                         <Calendar

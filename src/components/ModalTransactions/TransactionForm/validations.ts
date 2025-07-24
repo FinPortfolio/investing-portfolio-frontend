@@ -72,7 +72,7 @@ export const getValidationRules = ({
         transactionCommision: {
             required: 'Commission is required',
             min: { value: 0, message: 'Commission must be non-negative' },
-            max: { value: 10, message: 'Commission must not exceed 10' },
+            max: { value: 1_000_000, message: 'Commission must not exceed 1,000,000' },
             validate: validateDecimals(6),
             valueAsNumber: true,
         },

@@ -24,7 +24,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
 
     // TODO: заменить временные значения на реальные
     const accountOpenDate = new Date('2020-01-01') //дата открытия счета
-    const assetQuantityLimit = 1000 // количество конкретного ассета
+    const assetQuantityLimit = 1000 // кол-во конкретного ассета - после сабмита с бека
     const isBond = type === 'bond'
 
     const validations = getValidationRules({
@@ -54,6 +54,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
         },
     })
 
+    const typeOfTransaction = useWatch({ control, name: 'transactionType' })
     const currency = useWatch({ control, name: 'transactionCurrency' })
     const price = useWatch({ control, name: 'initialPrice' })
     const quantity = useWatch({ control, name: 'transactionQuantity' })
@@ -160,6 +161,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                     isBond={isBond}
                     accruedInterest={accruedInterest}
                     accruedPerBond={accruedPerBond}
+                    typeOfTransaction={typeOfTransaction}
                 />
                 <div className="flex gap-3">
                     <Button type="button" onClick={onClose} variant="primaryTransparent">
