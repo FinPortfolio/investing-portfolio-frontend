@@ -64,7 +64,7 @@ export function SidebarMenu({ collapsedMenu, ignoreClickRef }: SidebarMenuProps)
             </ul>
             {submenuOpen && (
                 <div ref={submenuRef} className="absolute left-full top-0 z-10 text-white/80">
-                    <QuickActionSubmenu />
+                    <QuickActionSubmenu closeSubmenu={() => setSubmenuOpen(false)} />
                 </div>
             )}
         </nav>
