@@ -14,8 +14,8 @@ interface ValidationParams {
 }
 
 const validateDate = (value: string, accountOpenDate: Date) => {
-    const formatted = format(new Date(value), 'dd.mm.yyyy')
-    const parsed = parse(formatted, 'dd.mm.yyyy', new Date())
+    const formatted = format(new Date(value), 'dd.MM.yyyy')
+    const parsed = parse(formatted, 'dd.MM.yyyy', new Date())
     if (isNaN(parsed.getTime())) {
         return 'Invalid date format (DD.MM.YYYY expected)'
     }

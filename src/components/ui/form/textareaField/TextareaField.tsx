@@ -13,7 +13,9 @@ export function TextareaField({ label, error, registration, ...props }: Textarea
             <label>
                 <span className="input-label">{label}</span>
                 <textarea
-                    className={`input-basic ${error ? 'border-error' : 'border-primaryLight focus:border-primaryDark'}`}
+                    className={`input-basic placeholder:text-white/30 ${
+                        error ? 'border-error' : 'border-primaryLight focus:border-primaryDark'
+                    }`}
                     rows={4}
                     {...registration}
                     {...props}
