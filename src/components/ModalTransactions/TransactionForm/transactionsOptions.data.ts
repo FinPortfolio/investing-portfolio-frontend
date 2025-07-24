@@ -1,4 +1,4 @@
-import { currencyOptions } from '@/types/commonTypes'
+import { currencyOptions } from '@/constants/currencies.constants'
 
 export const transactionCurrencyOptions = currencyOptions.map(({ value, label }) => ({ value, label }))
 
