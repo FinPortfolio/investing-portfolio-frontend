@@ -1,11 +1,14 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import '@/styles/custom-styles.scss'
 
+type ButtonStyleVariant = 'primaryFull' | 'primaryTransparent' | 'secondaryFull' | 'secondaryTransparent' | 'danger'
+type ButtonSizeVariant = 'sm' | 'md' | 'lg'
+
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     isLoading?: boolean
     children: ReactNode
-    variant?: 'primaryFull' | 'primaryTransparent' | 'secondaryFull' | 'secondaryTransparent' | 'danger'
-    size?: 'sm' | 'md' | 'lg'
+    variant?: ButtonStyleVariant
+    size?: ButtonSizeVariant
     className?: string
 }
 

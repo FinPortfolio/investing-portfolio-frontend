@@ -138,7 +138,7 @@ export function TransactionsForm({ type, onClose }: TransactionsFormProps) {
                         registration={register('bondAccruedInterest', validations.bondAccruedInterest)}
                         error={errors.bondAccruedInterest?.message}
                     />
-                    <div className="flex pb-[10px] w-full h-full justify-start items-end">
+                    <div className="flex pb-3 w-full h-full justify-start items-end">
                         <Checkbox label="AI per Bond" registration={register('isAccruedInterestPerBond')} />
                     </div>
                 </div>

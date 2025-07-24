@@ -31,7 +31,9 @@ export function Checkbox({ label, registration, error, variant = 'primary', ...p
             <label className="relative flex items-center gap-2 cursor-pointer select-none">
                 <input type="checkbox" id={registration.name} {...registration} {...props} className="peer hidden" />
                 <div
-                    className={`relative h-5 w-5 rounded border flex items-center justify-center transition-all duration-200 ${styles.box}`}
+                    className={`relative h-5 w-5 rounded border flex items-center justify-center transition-all duration-200 ${
+                        error ? 'border-error peer-checked:bg-error peer-checked:border-error' : styles.box
+                    }`}
                 ></div>
                 <Check
                     size={14}
